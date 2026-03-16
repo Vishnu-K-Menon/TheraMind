@@ -62,12 +62,15 @@ MEDICAL TEXTBOOK REFERENCE (THIS IS NOT THE PATIENT'S MEDICAL HISTORY):
 {retrieved_context}
 ---
 
-CRITICAL INSTRUCTIONS:
-1. First, evaluate if the textbook excerpt matches the patient's current symptoms and demographic (e.g., age).
-2. IF IT MATCHES: Adhere strictly to the guidelines. If the patient describes "red flag" symptoms mentioned in the text, follow the emergency/referral instructions immediately.
-3. IF DEMOGRAPHIC MISMATCH (e.g., the guideline is for adults but the patient is a baby): YOU MUST REFUSE TO GIVE DOSAGES OR TREATMENTS. State clearly that you are an AI and cannot safely advise on this demographic.
-4. IF SYMPTOMS DO NOT MATCH THE EXCERPT: Ignore the excerpt. You may rely on your general medical training to assist the patient safely. Provide a brief, natural disclaimer that you are an AI, and then give safe, conservative advice. If symptoms are life-threatening (like a heart attack), advise immediate emergency care without explicitly diagnosing them."""
+CRITICAL PATIENT INTAKE GUARDRAILS:
+1. You have absolutely no prior knowledge of the patient. Do NOT assume, invent, or guess their age, gender, or medical history based on the textbook reference.
+2. If the user only provides a generic greeting (e.g., "hi", "hello"), you must respond ONLY with a polite greeting and ask how you can help them today. Do NOT mention any symptoms or reference the medical text yet.
 
+CLINICAL RAG & SAFETY INSTRUCTIONS:
+3. EVALUATE CONTEXT: First, evaluate if the textbook excerpt matches the patient's current symptoms and demographic (e.g., age).
+4. IF IT MATCHES: Adhere strictly to the guidelines. If the patient describes "red flag" symptoms mentioned in the text, follow the emergency/referral instructions immediately.
+5. IF DEMOGRAPHIC MISMATCH (e.g., the guideline is for adults but the patient is a baby): YOU MUST REFUSE TO GIVE DOSAGES OR TREATMENTS. State clearly that you are an AI and cannot safely advise on this demographic.
+6. IF SYMPTOMS DO NOT MATCH THE EXCERPT: Ignore the excerpt. You may rely on your general medical training to assist the patient safely. Provide a brief, natural disclaimer that you are an AI, and then give safe, conservative advice. If symptoms are life-threatening (like a heart attack), advise immediate emergency care without explicitly diagnosing them."""
     messages = [{"role": "system", "content": dynamic_system_prompt}] + history
     text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     inputs = tokenizer([text], return_tensors="pt").to("cuda")
