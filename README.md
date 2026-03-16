@@ -22,7 +22,7 @@ This project was developed in three major iterative phases, following the indust
   * *Weights hosted on Hugging Face: `VKM47/TheraMind-Agentic-V2`*
 * **Phase 3: Direct Preference Optimization (DPO)**
   * Extracted baseline hallucinations from Phase 1 to create a targeted preference dataset of 49 chosen vs. rejected pairs. Applied DPO via Unsloth's patched `DPOTrainer` to align the SFT model, significantly reducing medical hallucinations and enforcing strict clinical guardrails.
-  * *Weights hosted on Hugging Face: `YOUR_HF_USERNAME/TheraMind-DPO-Adapters`*
+  * *Weights hosted on Hugging Face: `VKM47/TheraMind-DPO-Adapters`*
 
 ## ⚙️ Core Technologies
 * **LLM Framework:** Unsloth (for highly optimized, memory-efficient fine-tuning)
