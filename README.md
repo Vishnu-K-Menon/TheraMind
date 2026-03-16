@@ -42,6 +42,7 @@ TheraMind/
 ├── build_db.py              # Script to instantiate and populate the Chroma vector database
 ├── requirements.txt         # Python dependencies
 └── README.md                # Project documentation
+```
 Note: Model .safetensors weights and local .venv environments are strictly .gitignored to maintain a lightweight codebase. Weights are downloaded dynamically at runtime.
 
 🚀 Quick Start Guide
