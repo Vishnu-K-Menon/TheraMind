@@ -19,7 +19,7 @@ This project was developed in three major iterative phases, following the indust
   * Established baseline ROUGE metrics using the base Llama 3.2 (3B) model with 4-bit quantization. Evaluated output accuracy using zero-shot and one-shot prompt engineering against the `omi-health/medical-dialogue-to-soap-summary` dataset.
 * **Phase 2: Supervised Fine-Tuning (SFT) for Agentic Multi-Tasking**
   * Applied Supervised Fine-Tuning (SFT) using Unsloth and PEFT QLoRA adapters. Mapped dialogues into a turn-by-turn chat template to teach the model to act as an active chatbot and instantly generate structured SOAP notes upon a specific user trigger.
-  * *Weights hosted on Hugging Face: `YOUR_HF_USERNAME/TheraMind-Agentic-V2`*
+  * *Weights hosted on Hugging Face: `VKM47/TheraMind-Agentic-V2`*
 * **Phase 3: Direct Preference Optimization (DPO)**
   * Extracted baseline hallucinations from Phase 1 to create a targeted preference dataset of 49 chosen vs. rejected pairs. Applied DPO via Unsloth's patched `DPOTrainer` to align the SFT model, significantly reducing medical hallucinations and enforcing strict clinical guardrails.
   * *Weights hosted on Hugging Face: `YOUR_HF_USERNAME/TheraMind-DPO-Adapters`*
