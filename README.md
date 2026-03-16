@@ -48,31 +48,35 @@ Note: Model .safetensors weights and local .venv environments are strictly .giti
 🚀 Quick Start Guide
 Follow these steps to run TheraMind locally on your machine.
 
-1. Clone the Repository
-Bash
+1. **Clone the Repository**
+```Bash
 git clone [https://github.com/Vishnu-K-Menon/TheraMind.git](https://github.com/Vishnu-K-Menon/TheraMind.git)
 cd TheraMind
+```
 2. Set Up the Virtual Environment
 It is highly recommended to use an isolated Python environment.
 
-Bash
+```Bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
-
+```
 3. Install Dependencies
-Bash
+```Bash
 pip install -r requirements.txt
+```
 
 5. Build the Vector Database
 Initialize the RAG pipeline by building the local ChromaDB instances from the provided data.
 
-Bash
+```Bash
 python build_db.py
+```
 5. Launch the Application
 Run the Chainlit server. The application will automatically pull the necessary DPO adapter weights from Hugging Face during the initial load.
 
-Bash
+```Bash
 chainlit run app.py -w
+```
 
 ***
 
