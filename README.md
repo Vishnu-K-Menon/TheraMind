@@ -58,10 +58,12 @@ It is highly recommended to use an isolated Python environment.
 Bash
 python -m venv .venv
 source .venv/bin/activate  # On Windows use: .venv\Scripts\activate
+
 3. Install Dependencies
 Bash
 pip install -r requirements.txt
-4. Build the Vector Database
+
+5. Build the Vector Database
 Initialize the RAG pipeline by building the local ChromaDB instances from the provided data.
 
 Bash
