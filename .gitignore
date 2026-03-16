@@ -1,0 +1,26 @@
+# Python Virtual Environment
+venv/
+.venv/
+
+# Python Cache & Checkpoints
+__pycache__/
+_pycache_/
+.ipynb_checkpoints/
+.chainlit/
+unsloth_compiled_cache/
+
+# Vector Database (Users should build this locally)
+chroma_db/
+
+# Large Model Weights (DO NOT upload gigabytes of weights to GitHub)
+notebook/v3_dpo_aligned_adapters/
+notebook/v2_agentic_adapters/
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Security / Secrets
+upload_weights.py
+.env
