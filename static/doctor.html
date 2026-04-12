@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html class="light dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>TheraMind AI - Doctor Mode</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Manrope:wght@500;700;800&amp;display=swap"
+    rel="stylesheet" />
+  <!-- Icons -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script
+    id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-fixed": "#480049", "primary-fixed-dim": "#658eff", "on-secondary": "#004a5f", "tertiary-fixed-dim": "#ef8fe5", "on-primary-fixed-variant": "#00266e", "primary-fixed": "#7b9cff", error: "#ff716c", secondary: "#87d6f9", "on-surface-variant": "#a5a8d5", "on-primary": "#002873", "outline-variant": "#41456c", "surface-bright": "#212660", "secondary-fixed-dim": "#7fcef0", surface: "#06092f", "on-primary-container": "#001e5a", outline: "#6f729d", "primary-container": "#7b9cff", "tertiary-container": "#fe9cf4", "on-primary-fixed": "#000000", "on-surface": "#e3e3ff", "tertiary-fixed": "#fe9cf4", "surface-container-high": "#161a4b", "surface-container-lowest": "#000000", "surface-dim": "#06092f", "inverse-on-surface": "#4f527a", "on-background": "#e3e3ff", "surface-container-highest": "#1b2055", primary: "#90abff", "on-secondary-container": "#f0f9ff", "inverse-surface": "#fbf8ff", "on-secondary-fixed-variant": "#005871", "surface-tint": "#90abff", "secondary-container": "#006783", "surface-container-low": "#0a0e38", "on-error": "#490006", "secondary-fixed": "#8ddcfe", "on-tertiary": "#722070", "on-secondary-fixed": "#00394b", background: "#06092f", "surface-variant": "#1b2055", "surface-container": "#101442", "on-tertiary-container": "#661466", "on-tertiary-fixed-variant": "#711f6f", tertiary: "#ffb4f4", "error-container": "#9f0519", "on-error-container": "#ffa8a3", "inverse-primary": "#0053dc", "error-dim": "#d7383b", "primary-dim": "#2169fe", "secondary-dim": "#79c8ea", "tertiary-dim": "#ef8fe5" }, fontFamily: { headline: ["Manrope"], body: ["Inter"], label: ["Inter"], display: "Manrope" }, borderRadius: { DEFAULT: "0.5rem", lg: "1rem", xl: "1.5rem", full: "9999px" } } } };</script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .glass-card-dark {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+  </style>
+</head>
+
+<body class="bg-[#F5F3E9] font-body text-slate-900">
+  <!-- TopAppBar -->
+  <header
+    class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm shadow-slate-200/50 dark:shadow-none h-16 flex justify-between items-center px-6">
+    <div class="flex items-center gap-8">
+      <h1 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-50 font-headline">TheraMind</h1>
+      <nav class="hidden md:flex gap-6 items-center h-full">
+        <a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-sans text-sm font-medium tracking-tight hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors px-3 py-2 rounded-md"
+          href="index.html">Patient Mode</a>
+        <a class="text-blue-700 dark:text-blue-400 font-bold border-b-2 border-blue-700 font-sans text-sm tracking-tight px-3 py-2"
+          href="doctor.html">Doctor Mode</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="flex items-center gap-1 bg-slate-400 p-1 rounded-full shadow-inner mr-2">
+        <button onclick="window.location.href='index.html'" class="text-slate-600 text-xs font-bold px-4 py-1.5 rounded-full hover:bg-slate-300 transition-colors">Patient</button>
+        <button onclick="window.location.href='doctor.html'" class="bg-blue-500 text-white text-xs font-extrabold tracking-wide px-5 py-1.5 rounded-full shadow-md">Doctor</button>
+      </div>
+      <button class="p-2 rounded-full hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors">
+        <span class="material-symbols-outlined text-slate-600">notifications</span>
+      </button>
+      <button class="p-2 rounded-full hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors">
+        <span class="material-symbols-outlined text-slate-600">settings</span>
+      </button>
+      <div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30">
+        <img alt="Doctor profile avatar" class="w-full h-full object-cover"
+          data-alt="professional headshot of a middle-aged male doctor with a kind expression wearing a white coat and stethoscope"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgQ8YwSeTFAGW2JEdwB7gzOOnYEkUUgKY2b0jz33d9Or06q34zt5K9Sj0xCL79ji6xDPp3421JanJz4IShZJxfMzsG3_fxkapbf2GIGyLtPCVkRQ25z6ZGIjhnfp-umsm7XZgNgTxdjhFZ0TcPc8Rg3F-87t_QVHD2ttHn2D4GhKV2aLaN0hoZJ8H0KhvGGn6QTIY5e6Dj5e0Wp0vIsOy_Q2K7DsvIYg-9ff93v0Y7BJ4nu_TJfRu0B1GuswhWQfjoF3RlRuJ30B3H" />
+      </div>
+    </div>
+  </header>
+  <!-- SideNavBar -->
+  <aside
+    class="h-screen w-72 flex flex-col fixed left-0 top-0 z-40 bg-slate-50 dark:bg-slate-950 pt-20 p-4 gap-2 transition-all">
+    <div class="mb-8 px-4">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-white">
+          <span class="material-symbols-outlined text-sm"
+            style="font-variation-settings: 'FILL' 1;">medical_services</span>
+        </div>
+        <div>
+          <h2 class="text-xl font-black text-blue-700 dark:text-blue-400 font-headline">TheraMind AI</h2>
+          <p class="text-xs font-semibold text-slate-500 uppercase tracking-widest">Clinical Assistant</p>
+        </div>
+      </div>
+    </div>
+    <button
+      class="mb-6 w-full py-3 px-4 bg-primary text-white rounded-md font-bold flex items-center justify-center gap-2 hover:opacity-90 active:scale-95 transition-all shadow-md">
+      <span class="material-symbols-outlined">add_circle</span>
+      Start New Session
+    </button>
+    <nav class="flex-1 space-y-1">
+      <a class="flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-300 rounded-md shadow-sm font-sans text-sm font-semibold hover:translate-x-1 transition-transform"
+        href="#">
+        <span class="material-symbols-outlined">add_circle</span> New Consultation
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform"
+        href="#">
+        <span class="material-symbols-outlined">history</span> Recent Sessions
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform"
+        href="#">
+        <span class="material-symbols-outlined">folder_shared</span> Patient Records
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform"
+        href="#">
+        <span class="material-symbols-outlined">analytics</span> Clinical Insights
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform"
+        href="#">
+        <span class="material-symbols-outlined">inventory_2</span> Archive
+      </a>
+    </nav>
+    <div class="mt-auto space-y-1 border-t border-slate-200 dark:border-slate-800 pt-4">
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold"
+        href="#">
+        <span class="material-symbols-outlined">help</span> Help Center
+      </a>
+      <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold"
+        href="#">
+        <span class="material-symbols-outlined">logout</span> Sign Out
+      </a>
+    </div>
+  </aside>
+  <!-- Main Workspace -->
+  <main
+    class="ml-72 mt-16 p-8 min-h-screen bg-gradient-to-br from-[#F8F6F0] via-[#EBE6DD] to-[#DCE3EC] transition-colors duration-500">
+    <div class="max-w-5xl mx-auto space-y-8">
+      <!-- Context Header -->
+      <div class="flex justify-between items-end mb-12">
+        <div class="space-y-1">
+          <nav class="text-xs text-secondary mb-2 flex items-center gap-2">
+            <span>Patients</span> <span class="material-symbols-outlined text-[10px]">chevron_right</span> <span>Marcus
+              Thorne</span> <span class="material-symbols-outlined text-[10px]">chevron_right</span> <span
+              class="text-primary font-bold">SOAP Note Generation</span>
+          </nav>
+          <h2 class="text-4xl font-extrabold font-headline tracking-tight text-slate-900">Consultation: Marcus Thorne
+          </h2>
+          <p class="text-slate-900 font-medium flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">event</span> October 24, 2023 · 14:30 PM Session
+          </p>
+        </div>
+        <div class="flex gap-3">
+          <button
+            class="flex items-center gap-2 px-5 py-2.5 bg-doc-card/50est text-primary border border-outline-variant/20 rounded-md font-bold hover:bg-white shadow-sm transition-all active:scale-95">
+            <span class="material-symbols-outlined text-lg">edit</span>
+            Edit Draft
+          </button>
+          <button id="generate-soap-btn"
+            class="flex items-center gap-2 px-6 py-2.5 bg-gradient-to-br from-primary to-primary-container text-white rounded-md font-bold shadow-lg shadow-primary/20 hover:opacity-90 transition-all active:scale-95">
+            <span class="material-symbols-outlined text-lg"
+              style="font-variation-settings: 'FILL' 1;">description</span>
+            Generate SOAP Note
+          </button>
+        </div>
+      </div>
+      <!-- Bento Grid Layout -->
+      <div class="grid grid-cols-12 gap-8">
+        <!-- Main SOAP Document Card -->
+        <div class="col-span-12 lg:col-span-8">
+          <div
+            class="glass-card rounded-xl shadow-xl shadow-slate-200/40 overflow-hidden border-l-4 border-primary relative">
+            <!-- Clinical Header -->
+            <div class="p-8 border-b border-surface-container/50">
+              <div class="flex justify-between items-center mb-6">
+                <span id="soap-status-badge"
+                  class="px-3 py-1 bg-tertiary-container text-white text-[10px] font-bold rounded-full uppercase tracking-widest">Validated
+                  AI Draft</span>
+                <span class="text-label-md text-secondary font-medium uppercase tracking-tighter">Clinical Record ID:
+                  #TM-2023-9901</span>
+              </div>
+              <h3 class="text-2xl font-bold font-headline text-slate-900">Psychological Consultation Summary</h3>
+            </div>
+            <!-- Content Sections (S.O.A.P) -->
+            <div id="soap-content" class="p-8 space-y-12">
+              <!-- Subjective -->
+              <section>
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-8 h-8 rounded-full bg-blue-50/50 flex items-center justify-center text-primary">
+                    <span class="font-black text-sm">S</span>
+                  </div>
+                  <h4 class="text-sm font-bold font-label uppercase tracking-widest text-slate-900 font-medium">
+                    Subjective</h4>
+                </div>
+                <div class="pl-10 space-y-4">
+                  <p class="text-body-md leading-relaxed text-slate-900 font-medium">
+                    Patient reports increased anxiety levels over the last 14 days, specifically relating to
+                    professional deadlines. "I feel like I'm underwater constantly," patient stated. Reports
+                    intermittent insomnia (3-4 hours sleep/night) and diminished appetite. Denies suicidal ideation or
+                    intent.
+                  </p>
+                  <ul class="list-disc list-inside text-body-md text-slate-900 font-medium space-y-2 marker:text-primary">
+                    <li>Primary Complaint: Occupational Stress</li>
+                    <li>Secondary Complaint: Disruptive Sleep Cycle</li>
+                    <li>Patient Mood Self-Rating: 3/10</li>
+                  </ul>
+                </div>
+              </section>
+              <!-- Objective -->
+              <section>
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-8 h-8 rounded-full bg-blue-50/50 flex items-center justify-center text-primary">
+                    <span class="font-black text-sm">O</span>
+                  </div>
+                  <h4 class="text-sm font-bold font-label uppercase tracking-widest text-slate-900 font-medium">
+                    Objective</h4>
+                </div>
+                <div class="pl-10 space-y-4">
+                  <p class="text-body-md text-slate-900 font-medium leading-relaxed">
+                    Patient appeared well-groomed but exhibited psychomotor agitation (foot tapping, rapid speech).
+                    Affect is restricted and congruent with depressed mood. Thought process is linear but ruminative on
+                    work tasks. GAD-7 score today: 16 (Severe anxiety).
+                  </p>
+                  <div class="bg-white/40 border border-white/60 rounded-lg p-4 grid grid-cols-2 gap-4">
+                    <div>
+                      <p class="text-[10px] uppercase text-secondary font-bold">Vitals Check</p>
+                      <p class="font-headline font-bold text-slate-900">BP: 132/88 mmHg</p>
+                    </div>
+                    <div>
+                      <p class="text-[10px] uppercase text-secondary font-bold">Heart Rate</p>
+                      <p class="font-headline font-bold text-slate-900">84 BPM (Resting)</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <!-- Assessment -->
+              <section>
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-8 h-8 rounded-full bg-blue-50/50 flex items-center justify-center text-primary">
+                    <span class="font-black text-sm">A</span>
+                  </div>
+                  <h4 class="text-sm font-bold font-label uppercase tracking-widest text-slate-900 font-medium">
+                    Assessment</h4>
+                </div>
+                <div class="pl-10 space-y-4">
+                  <p class="text-body-md text-slate-900 font-medium leading-relaxed italic">
+                    Diagnosis: Generalized Anxiety Disorder (ICD-10 F41.1) - Exacerbated by acute environmental
+                    stressors.
+                  </p>
+                  <p class="text-body-md text-slate-900 font-medium leading-relaxed">
+                    Patient is experiencing a significant uptick in symptoms due to high-pressure work environment.
+                    Coping mechanisms (mindfulness) are being deployed but are currently insufficient for the level of
+                    autonomic arousal. No evidence of psychosis or clinical depression.
+                  </p>
+                </div>
+              </section>
+              <!-- Plan -->
+              <section>
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="w-8 h-8 rounded-full bg-blue-50/50 flex items-center justify-center text-primary">
+                    <span class="font-black text-sm">P</span>
+                  </div>
+                  <h4 class="text-sm font-bold font-label uppercase tracking-widest text-slate-900 font-medium">
+                    Plan</h4>
+                </div>
+                <div class="pl-10 space-y-4">
+                  <div class="space-y-3">
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined text-tertiary text-sm mt-0.5"
+                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                      <p class="text-body-md text-slate-900 font-medium">Adjust medication: Increase Sertraline
+                        to 50mg daily starting tomorrow.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined text-tertiary text-sm mt-0.5"
+                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                      <p class="text-body-md text-slate-900 font-medium">Schedule Cognitive Behavioral Therapy
+                        (CBT) intensive session for Tuesday.</p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="material-symbols-outlined text-tertiary text-sm mt-0.5"
+                        style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                      <p class="text-body-md text-slate-900 font-medium">Assign "Sleep Hygiene" workbook and
+                        provide digital resource for Box Breathing.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+            <!-- Actions Footer -->
+            <div class="bg-white/30 border-t border-surface-container/50 p-6 flex justify-between items-center">
+              <div class="flex gap-4">
+                <button
+                  class="text-slate-500 hover:text-primary transition-colors flex items-center gap-1 text-xs font-bold uppercase tracking-wider">
+                  <span class="material-symbols-outlined text-lg">print</span> Print Note
+                </button>
+                <button
+                  class="text-slate-500 hover:text-primary transition-colors flex items-center gap-1 text-xs font-bold uppercase tracking-wider">
+                  <span class="material-symbols-outlined text-lg">share</span> Export to EHR
+                </button>
+              </div>
+              <p class="text-[10px] text-slate-400 font-medium italic">Electronically signed by Dr. TheraMind AI v4.2
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Sidebar Analysis -->
+        <div class="col-span-12 lg:col-span-4 space-y-6">
+          <!-- Patient Quick Info -->
+          <div class="glass-card rounded-xl p-6 shadow-sm">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-white/50">
+                <img alt="Patient profile photo" class="w-full h-full object-cover"
+                  data-alt="portrait of a man with spectacles in professional attire looking thoughtful against a neutral background"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCynnJ_x0KQcyfmTEgTO2Sk13RwFGdGaUqlZAQ9z-c0P3VKhvo_FuN1hPmUo-Gyq6TyC0RRseqmeyz9-t7hcustvrGn19vlt-ve8QKIk1zvTeeTpq1_qwNxxhTGMynHH3RSdkBv4NTVU5z8AVNEk9HdPqM2GFAmZ20KNAvr_jmOhdw3oqUK2m3Zl687YGY75i80jHg-mis7PKbWTiY7nGhLB6qprqrGeNQgUxGKcq9Z0tOY_dvEs65aErsr0Awg-CmfiSL--HPWIt8H" />
+              </div>
+              <div>
+                <h4 class="font-headline font-bold text-lg text-slate-900">Marcus Thorne</h4>
+                <p class="text-xs text-slate-900 font-medium font-medium">34 Years · Male · Software Architect</p>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div class="flex justify-between items-center py-2 border-b border-white/20">
+                <span class="text-xs font-bold text-secondary uppercase">Last Session</span>
+                <span class="text-xs font-bold text-slate-900">Oct 10, 2023</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-white/20">
+                <span class="text-xs font-bold text-secondary uppercase">Risk Level</span>
+                <span
+                  class="px-2 py-0.5 bg-error-container text-on-error-container text-[10px] rounded font-black">MODERATE</span>
+              </div>
+              <div class="flex justify-between items-center py-2 border-b border-white/20">
+                <span class="text-xs font-bold text-secondary uppercase">Compliance</span>
+                <span class="text-xs font-bold text-tertiary">92%</span>
+              </div>
+            </div>
+          </div>
+          <!-- AI Confidence Metrics -->
+          <div class="glass-card-dark text-slate-900 rounded-xl p-6 shadow-xl shadow-primary/20">
+            <h4 class="font-headline font-bold mb-4 flex items-center gap-2">
+              <span class="material-symbols-outlined text-lg text-primary">smart_toy</span>
+              AI Generation Insights
+            </h4>
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between text-xs font-bold mb-2">
+                  <span>Accuracy Confidence</span>
+                  <span class="text-primary">98.4%</span>
+                </div>
+                <div class="w-full h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                  <div class="h-full bg-primary w-[98%]"></div>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 leading-relaxed italic border-l-2 border-primary/30 pl-3">
+                "The patient's sentiment was cross-referenced with previous session transcripts to ensure longitudinal
+                consistency in the Subjective section."
+              </p>
+              <button
+                class="w-full py-2.5 bg-slate-100 hover:bg-slate-200 border border-slate-300 text-slate-800 rounded-md text-[10px] font-black uppercase tracking-widest transition-all shadow-sm">
+                View Source Transcripts
+              </button>
+            </div>
+          </div>
+          <!-- Previous Records Widget -->
+          <div class="glass-card rounded-xl p-6 shadow-sm">
+            <h4 class="font-headline font-bold text-slate-900 mb-4">Historical Trends</h4>
+            <div class="space-y-4">
+              <div class="flex items-center gap-3">
+                <div class="p-2 rounded bg-white/50 border border-white/60">
+                  <span class="material-symbols-outlined text-primary">trending_up</span>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-slate-900">Anxiety (GAD-7)</p>
+                  <p class="text-[10px] text-secondary">+4 points since last month</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-3">
+                <div class="p-2 rounded bg-white/50 border border-white/60">
+                  <span class="material-symbols-outlined text-primary">bedtime</span>
+                </div>
+                <div>
+                  <p class="text-xs font-bold text-slate-900">Sleep Quality</p>
+                  <p class="text-[10px] text-secondary">-15% nightly duration</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
+<script>
+// ── TheraMind Doctor Mode: SOAP Generation API Wiring ──
+(function () {
+  'use strict';
+
+  // Load chatHistory from localStorage (synced from Patient Mode)
+  let chatHistory = [];
+  try {
+    chatHistory = JSON.parse(localStorage.getItem('theraMindChatHistory') || '[]');
+  } catch (e) {
+    console.warn('Failed to parse chatHistory from localStorage:', e);
+    chatHistory = [];
+  }
+
+  // Listen for localStorage changes from Patient Mode (cross-tab sync)
+  window.addEventListener('storage', function (e) {
+    if (e.key === 'theraMindChatHistory') {
+      try {
+        chatHistory = JSON.parse(e.newValue || '[]');
+      } catch (err) {
+        console.warn('Failed to parse updated chatHistory:', err);
+      }
+    }
+  });
+
+  const generateBtn = document.getElementById('generate-soap-btn');
+  const soapContent = document.getElementById('soap-content');
+  const statusBadge = document.getElementById('soap-status-badge');
+
+  // ── Helper: escape HTML to prevent XSS ──
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // ── Helper: render SOAP sections from response text ──
+  function renderSOAPContent(responseText) {
+    // Try to parse structured sections (S, O, A, P)
+    const sections = [
+      { key: 'S', title: 'Subjective', icon: 'S' },
+      { key: 'O', title: 'Objective', icon: 'O' },
+      { key: 'A', title: 'Assessment', icon: 'A' },
+      { key: 'P', title: 'Plan', icon: 'P' }
+    ];
+
+    // Build HTML for each section from raw response
+    let html = '';
+    sections.forEach(function (section) {
+      // Try to extract section content using common delimiters
+      const patterns = [
+        new RegExp('(?:^|\\n)\\s*(?:#+\\s*)?' + section.title + '[:\\s]*\\n([\\s\\S]*?)(?=\\n\\s*(?:#+\\s*)?(?:Objective|Assessment|Plan|$))', 'i'),
+        new RegExp('(?:^|\\n)\\s*\\*\\*' + section.title + '\\*\\*[:\\s]*\\n([\\s\\S]*?)(?=\\n\\s*\\*\\*(?:Objective|Assessment|Plan)\\*\\*|$)', 'i'),
+        new RegExp('(?:^|\\n)\\s*' + section.key + '\\s*[:.]\\s*\\n?([\\s\\S]*?)(?=\\n\\s*(?:O|A|P)\\s*[:.)]|$)', 'i')
+      ];
+
+      let content = '';
+      for (const pattern of patterns) {
+        const match = responseText.match(pattern);
+        if (match && match[1] && match[1].trim()) {
+          content = match[1].trim();
+          break;
+        }
+      }
+
+      if (!content) {
+        // If we can't parse sections, show full response in the Subjective section
+        if (section.key === 'S') content = responseText;
+        else content = 'No data extracted for this section.';
+      }
+
+      html += `
+        <section>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-full bg-blue-50/50 flex items-center justify-center text-primary">
+              <span class="font-black text-sm">${section.icon}</span>
+            </div>
+            <h4 class="text-sm font-bold font-label uppercase tracking-widest text-slate-900 font-medium">
+              ${section.title}</h4>
+          </div>
+          <div class="pl-10 space-y-4">
+            <p class="text-body-md leading-relaxed text-slate-900 font-medium">${escapeHtml(content)}</p>
+          </div>
+        </section>`;
+    });
+
+    return html;
+  }
+
+  // ── Core: generate SOAP note via /generate_soap endpoint ──
+  generateBtn.addEventListener('click', async function () {
+    // Check if we have chat history
+    if (chatHistory.length === 0) {
+      // Attempt one more reload from localStorage
+      try {
+        chatHistory = JSON.parse(localStorage.getItem('theraMindChatHistory') || '[]');
+      } catch (e) { /* ignore */ }
+    }
+
+    if (chatHistory.length === 0) {
+      soapContent.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-16 text-center">
+          <span class="material-symbols-outlined text-5xl text-slate-300 mb-4">chat_bubble_outline</span>
+          <h3 class="text-lg font-bold text-slate-500 mb-2">No Conversation Data</h3>
+          <p class="text-sm text-slate-400 max-w-md">Please conduct a patient consultation in Patient Mode first. The SOAP note will be generated from that conversation history.</p>
+        </div>`;
+      return;
+    }
+
+    // Show loading state
+    const originalBtnHTML = generateBtn.innerHTML;
+    generateBtn.disabled = true;
+    generateBtn.innerHTML = `
+      <span class="material-symbols-outlined text-lg animate-spin">progress_activity</span>
+      Generating...`;
+    statusBadge.textContent = 'Generating...';
+    statusBadge.classList.remove('bg-tertiary-container');
+    statusBadge.classList.add('bg-yellow-500');
+
+    soapContent.innerHTML = `
+      <div class="flex flex-col items-center justify-center py-16">
+        <div class="flex gap-2 mb-4">
+          <div class="w-3 h-3 bg-primary rounded-full animate-bounce" style="animation-delay: 0s"></div>
+          <div class="w-3 h-3 bg-primary rounded-full animate-bounce" style="animation-delay: 0.15s"></div>
+          <div class="w-3 h-3 bg-primary rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
+        </div>
+        <p class="text-sm text-slate-500 font-medium">Synthesizing clinical documentation from conversation...</p>
+      </div>`;
+
+    try {
+      const response = await fetch('/generate_soap', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ history: chatHistory })
+      });
+
+      if (!response.ok) {
+        throw new Error('Server error: ' + response.status);
+      }
+
+      const data = await response.json();
+      const soapText = data.response || data.soap_note || data.message || '';
+
+      // Render SOAP content
+      soapContent.innerHTML = renderSOAPContent(soapText);
+
+      // Update status badge
+      statusBadge.textContent = 'Live AI Draft';
+      statusBadge.classList.remove('bg-yellow-500');
+      statusBadge.classList.add('bg-tertiary-container');
+
+    } catch (error) {
+      console.error('SOAP generation error:', error);
+      soapContent.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-16 text-center">
+          <span class="material-symbols-outlined text-5xl text-red-300 mb-4">error_outline</span>
+          <h3 class="text-lg font-bold text-red-500 mb-2">Generation Failed</h3>
+          <p class="text-sm text-slate-400 max-w-md">Could not connect to the backend. Please ensure the server is running at localhost:8000 and try again.</p>
+          <p class="text-xs text-slate-300 mt-2">${escapeHtml(error.message)}</p>
+        </div>`;
+
+      statusBadge.textContent = 'Error';
+      statusBadge.classList.remove('bg-yellow-500');
+      statusBadge.classList.add('bg-red-500');
+    } finally {
+      // Restore button
+      generateBtn.disabled = false;
+      generateBtn.innerHTML = originalBtnHTML;
+    }
+  });
+})();
+</script>
