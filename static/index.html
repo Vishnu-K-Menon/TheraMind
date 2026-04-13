@@ -11,46 +11,41 @@
 <!-- Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#3A7BD5", navy: "#1D2D50", teal: "#124D41", cyan: "#63C9D6", sky: "#D6ECFF", "doc-bg": "#0B132B", "doc-card": "#1C2541", "doc-text": "#F7F9FB", "pat-offwhite": "#F6FBFF"}, fontFamily: {headline: ["Manrope"], body: ["Inter"], label: ["Inter"], display: "Manrope"}, borderRadius: {DEFAULT: "0.5rem", lg: "1rem", xl: "1.5rem", full: "9999px"}}}};</script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {primary: "#2169fe", "primary-container": "#d8e2ff", secondary: "#646dd5", "secondary-container": "#e0e0ff", tertiary: "#ae56a8", "tertiary-container": "#ffd7f5", neutral: "#71749e", error: "#ba1a1a", "error-container": "#ffdad6", surface: "#faf8ff", "surface-dim": "#dad8e4", "surface-container-lowest": "#ffffff", "surface-container-low": "#f4f2fe", "surface-container": "#eeecf8", "surface-container-high": "#e8e6f2", "surface-container-highest": "#e2e1ed", "on-surface": "#1b1b22", "on-surface-variant": "#46464f", "on-primary": "#ffffff", "on-secondary": "#ffffff", "on-tertiary": "#ffffff", outline: "#777680", "outline-variant": "#c7c5d0", "inverse-surface": "#303037", "inverse-on-surface": "#f2f0fc"}, fontFamily: {headline: ["Manrope"], body: ["Inter"], label: ["Inter"], display: "Manrope"}, borderRadius: {DEFAULT: "0.5rem", lg: "1rem", xl: "1.5rem", full: "9999px"}, boxShadow: {ambient: "0 12px 40px rgba(25,28,30,0.06)", "ambient-lg": "0 16px 48px rgba(25,28,30,0.08)"}}}};</script>
 <style>
         body { font-family: 'Inter', sans-serif; }
         h1, h2, h3 { font-family: 'Manrope', sans-serif; }
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        /* Custom subtle background gradient */
-        .bg-clinical-gradient {
-            background: linear-gradient(135deg, #F6FBFF 0%, #D6ECFF 100%);
-        }
-        /* Glassmorphism utility */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
+        /* Ambient depth card — no blur, natural lift */
+        .surface-card {
+            background: var(--tw-surface-container-lowest, #ffffff);
+            box-shadow: 0 12px 40px rgba(25,28,30,0.06);
+            border-radius: 0.75rem;
         }
     </style>
 </head>
-<body class="bg-clinical-gradient text-navy selection:bg-primary/20 min-h-screen">
+<body class="bg-surface-container-low text-on-surface selection:bg-primary/20 min-h-screen">
 <!-- Top Navigation Bar -->
-<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl shadow-sm shadow-slate-200/50 dark:shadow-none flex justify-between items-center px-6 h-16 w-full max-w-full">
+<header class="fixed top-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-sm shadow-ambient flex justify-between items-center px-6 h-16 w-full max-w-full">
 <div class="flex items-center gap-8">
-<span class="text-2xl font-bold tracking-tight text-slate-900 dark:text-slate-50">TheraMind</span>
+<span class="text-2xl font-bold tracking-tight text-on-surface">TheraMind</span>
 <nav class="hidden md:flex items-center gap-6">
-<a class="text-blue-700 dark:text-blue-400 font-bold border-b-2 border-blue-700 font-sans text-sm tracking-tight px-1 py-1" href="index.html">Patient Mode</a>
-<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 font-sans text-sm font-medium tracking-tight hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors px-3 py-1 rounded-md" href="doctor.html">Doctor Mode</a>
+<a class="text-primary font-bold border-b-2 border-primary font-sans text-sm tracking-tight px-1 py-1" href="index.html">Patient Mode</a>
+<a class="text-on-surface-variant hover:text-on-surface font-sans text-sm font-medium tracking-tight hover:bg-surface-container-high/50 transition-colors px-3 py-1 rounded-md" href="doctor.html">Doctor Mode</a>
 </nav>
 </div>
 <div class="flex items-center gap-4">
-<div class="flex items-center gap-1 bg-slate-400 p-1 rounded-full shadow-inner">
-<button onclick="window.location.href='index.html'" class="bg-blue-500 text-white text-xs font-extrabold tracking-wide px-5 py-1.5 rounded-full shadow-md">Patient</button>
-<button onclick="window.location.href='doctor.html'" class="text-slate-600 text-xs font-bold px-4 py-1.5 rounded-full hover:bg-slate-300 transition-colors">Doctor</button>
+<div class="flex items-center gap-1 bg-surface-container-high p-1 rounded-full shadow-inner">
+<button onclick="window.location.href='index.html'" class="bg-primary text-on-primary text-xs font-extrabold tracking-wide px-5 py-1.5 rounded-full shadow-md">Patient</button>
+<button onclick="window.location.href='doctor.html'" class="text-on-surface-variant text-xs font-bold px-4 py-1.5 rounded-full hover:bg-surface-container transition-colors">Doctor</button>
 </div>
 <div class="flex items-center gap-2">
-<button class="p-2 text-slate-500 hover:bg-slate-100/50 rounded-full transition-colors">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 rounded-full transition-colors">
 <span class="material-symbols-outlined">notifications</span>
 </button>
-<button class="p-2 text-slate-500 hover:bg-slate-100/50 rounded-full transition-colors">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high/50 rounded-full transition-colors">
 <span class="material-symbols-outlined">settings</span>
 </button>
 <div class="w-8 h-8 rounded-full bg-sky/50 flex items-center justify-center overflow-hidden ml-2">
@@ -60,43 +55,43 @@
 </div>
 </header>
 <!-- Side Navigation Bar -->
-<aside class="h-screen w-72 flex-col fixed left-0 top-0 z-40 bg-slate-100/80 dark:bg-slate-950/80 backdrop-blur-md flex p-4 pt-20 gap-2 border-r border-slate-200/50 dark:border-slate-800 hidden md:flex">
+<aside class="h-screen w-72 flex-col fixed left-0 top-0 z-40 bg-surface-container flex p-4 pt-20 gap-2 hidden md:flex">
 <div class="mb-6 px-2">
 <div class="flex items-center gap-3 mb-1">
 <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
 <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">favorite</span>
 </div>
 <div>
-<h2 class="text-xl font-black text-blue-700 dark:text-blue-400">TheraMind AI</h2>
-<p class="text-[10px] uppercase tracking-widest font-bold text-slate-500">Clinical Assistant</p>
+<h2 class="text-xl font-black text-primary">TheraMind AI</h2>
+<p class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Clinical Assistant</p>
 </div>
 </div>
 </div>
-<button class="w-full flex items-center gap-3 px-4 py-3 bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-300 rounded-md shadow-sm font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
+<button class="w-full flex items-center gap-3 px-4 py-3 bg-surface-container-lowest text-primary rounded-md shadow-ambient font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
 <span class="material-symbols-outlined">add_circle</span>
 <span>New Consultation</span>
 </button>
 <div class="mt-6 flex flex-col gap-1">
-<p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-4 mb-2">Previous Consultations</p>
-<button class="w-full flex items-center gap-3 px-4 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
+<p class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider px-4 mb-2">Previous Consultations</p>
+<button class="w-full flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
 <span class="material-symbols-outlined text-lg">history</span>
 <span>Persistent Migraine</span>
 </button>
-<button class="w-full flex items-center gap-3 px-4 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
+<button class="w-full flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
 <span class="material-symbols-outlined text-lg">history</span>
 <span>Post-Flu Fatigue</span>
 </button>
-<button class="w-full flex items-center gap-3 px-4 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
+<button class="w-full flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
 <span class="material-symbols-outlined text-lg">history</span>
 <span>Joint Discomfort</span>
 </button>
 </div>
 <div class="mt-auto flex flex-col gap-1">
-<button class="w-full flex items-center gap-3 px-4 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
+<button class="w-full flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
 <span class="material-symbols-outlined text-lg">help</span>
 <span>Help Center</span>
 </button>
-<button class="w-full flex items-center gap-3 px-4 py-2.5 text-slate-600 dark:text-slate-400 hover:bg-white/50 dark:hover:bg-slate-800/50 rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
+<button class="w-full flex items-center gap-3 px-4 py-2.5 text-on-surface-variant hover:bg-surface-container-low rounded-md font-sans text-sm font-semibold hover:translate-x-1 transition-transform duration-200">
 <span class="material-symbols-outlined text-lg">logout</span>
 <span>Sign Out</span>
 </button>
@@ -108,16 +103,16 @@
 <div class="flex-1 overflow-y-auto p-4 md:p-8 space-y-8 max-w-4xl mx-auto w-full">
 <!-- Welcome Info Section -->
 <div class="flex flex-col items-center text-center py-8 space-y-4">
-<div class="w-16 h-16 rounded-2xl bg-white/70 backdrop-blur-md border border-white/40 flex items-center justify-center shadow-inner">
+<div class="w-16 h-16 rounded-2xl bg-surface-container-lowest shadow-ambient flex items-center justify-center">
 <span class="material-symbols-outlined text-3xl text-primary" style="font-variation-settings: 'FILL' 1;">medical_services</span>
 </div>
 <div>
 <h1 class="text-2xl md:text-3xl font-extrabold text-navy">How are you feeling today?</h1>
-<p class="text-slate-500 max-w-md mt-2">Describe your symptoms below. I'll help gather initial information for your medical record.</p>
+<p class="text-on-surface-variant max-w-md mt-2">Describe your symptoms below. I'll help gather initial information for your medical record.</p>
 </div>
 <div class="flex gap-2">
-<span class="bg-white/50 backdrop-blur-sm border border-white/30 text-tertiary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tight">HIPAA Compliant</span>
-<span class="bg-white/50 backdrop-blur-sm border border-white/30 text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tight">AI Assisted</span>
+<span class="bg-surface-container-lowest text-tertiary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tight shadow-sm">HIPAA Compliant</span>
+<span class="bg-surface-container-lowest text-primary text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tight shadow-sm">AI Assisted</span>
 </div>
 </div>
 <!-- Conversation -->
@@ -128,17 +123,17 @@
 <div class="h-32"></div>
 </div>
 <!-- Sticky Input Area -->
-<div class="sticky bottom-0 w-full bg-transparent p-4 md:p-6 border-t border-white/20">
+<div class="sticky bottom-0 w-full bg-surface-container-low/95 backdrop-blur-sm p-4 md:p-6">
 <div class="max-w-4xl mx-auto">
 <div class="relative group">
 <div class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-blue-500/10 rounded-2xl blur opacity-25 group-focus-within:opacity-100 transition duration-1000 group-focus-within:duration-200"></div>
-<div class="relative flex items-end gap-3 glass-card rounded-2xl shadow-xl shadow-slate-300/20 p-2 pl-5 transition-all">
+<div class="relative flex items-end gap-3 bg-surface-container-lowest rounded-2xl shadow-ambient p-2 pl-5 transition-all">
 <textarea id="chat-input" class="flex-1 py-3 bg-transparent border-none focus:ring-0 text-sm md:text-base text-navy placeholder-on-surface-variant/50 resize-none max-h-48" placeholder="Describe your symptoms in detail..." rows="1"></textarea>
 <div class="flex items-center gap-1 pb-1.5 pr-1.5">
-<button class="p-2 text-slate-500 hover:bg-white/50 rounded-lg transition-colors">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
 <span class="material-symbols-outlined">mic</span>
 </button>
-<button class="p-2 text-slate-500 hover:bg-white/50 rounded-lg transition-colors">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-colors">
 <span class="material-symbols-outlined">attach_file</span>
 </button>
 <button id="send-btn" class="bg-primary text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-md shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
@@ -147,7 +142,7 @@
 </div>
 </div>
 </div>
-<p class="text-[10px] text-center text-slate-500/60 mt-3 font-medium uppercase tracking-widest">
+<p class="text-[10px] text-center text-on-surface-variant/60 mt-3 font-medium uppercase tracking-widest">
                     Consultation in progress • Privacy Lock Active
                 </p>
 </div>
@@ -155,7 +150,7 @@
 </main>
 <!-- FAB for quick action -->
 <div class="fixed bottom-36 right-6 md:right-10 flex flex-col items-end gap-3 z-30">
-<button class="flex items-center gap-2 bg-white/40 text-red-600 px-5 py-3 rounded-full shadow-2xl hover:scale-105 transition-transform group border border-white/50 backdrop-blur-lg">
+<button class="flex items-center gap-2 bg-surface-container-lowest text-red-600 px-5 py-3 rounded-full shadow-ambient-lg hover:scale-105 transition-transform group">
 <span class="material-symbols-outlined">emergency</span>
 <span class="text-sm font-bold">I need urgent help</span>
 </button>
