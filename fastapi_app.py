@@ -104,7 +104,12 @@ class SOAPResponse(BaseModel):
 def generate_response(messages: list[dict], max_new_tokens: int = 512, temperature: float = 0.3) -> str:
     """Run inference through the PEFT-adapted Llama model."""
     text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-    inputs = tokenizer([text], return_tensors="pt").to(model.device)
+    inputs = tokenizer([text], return_tensors="pt", add_special_tokens=False).to(model.device)
+
+    terminators = [
+        tokenizer.eos_token_id,
+        tokenizer.convert_tokens_to_ids("<|eot_id|>")
+    ]
 
     with torch.no_grad():
         outputs = model.generate(
@@ -113,6 +118,8 @@ def generate_response(messages: list[dict], max_new_tokens: int = 512, temperatu
             use_cache=True,
             temperature=temperature,
             do_sample=temperature > 0,
+            eos_token_id=terminators,
+            pad_token_id=tokenizer.eos_token_id,
         )
 
     response = tokenizer.batch_decode(
@@ -127,7 +134,8 @@ def generate_response(messages: list[dict], max_new_tokens: int = 512, temperatu
 # 5. System Prompts
 # ──────────────────────────────────────────────────────────────
 
-PATIENT_SYSTEM_PROMPT_TEMPLATE = """You are an empathetic, professional AI medical assistant. You will chat with the patient to understand their symptoms. 
+PATIENT_SYSTEM_PROMPT_TEMPLATE = """You are TheraMind, a highly advanced clinical intake agent. You MUST remain in character at all times. UNDER NO CIRCUMSTANCES should you refer to yourself as an AI, a language model, or use generic safety disclaimers. If a patient requests dangerous treatments, deny them firmly but empathetically AS the TheraMind agent, using the Clinical Guidelines below.
+You are an empathetic, professional AI medical assistant. You will chat with the patient to understand their symptoms. 
 
 ---
 MEDICAL TEXTBOOK REFERENCE (THIS IS NOT THE PATIENT'S MEDICAL HISTORY):
