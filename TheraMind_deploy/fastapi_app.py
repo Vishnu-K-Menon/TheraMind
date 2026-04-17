@@ -101,7 +101,7 @@ class SOAPResponse(BaseModel):
 # 4. Inference Helper
 # ──────────────────────────────────────────────────────────────
 
-def generate_response(messages: list[dict], max_new_tokens: int = 512, temperature: float = 0.25, top_p: float = 0.95, top_k: int = 50) -> str:
+def generate_response(messages: list[dict], max_new_tokens: int = 512, temperature: float = 0.3) -> str:
     """Run inference through the PEFT-adapted Llama model."""
     text = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     inputs = tokenizer([text], return_tensors="pt", add_special_tokens=False).to(model.device)
@@ -117,9 +117,7 @@ def generate_response(messages: list[dict], max_new_tokens: int = 512, temperatu
             max_new_tokens=max_new_tokens,
             use_cache=True,
             temperature=temperature,
-            top_p=top_p,
-            top_k=top_k,
-            do_sample=True,
+            do_sample=temperature > 0,
             eos_token_id=terminators,
             pad_token_id=tokenizer.eos_token_id,
         )
