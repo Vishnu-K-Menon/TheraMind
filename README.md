@@ -5,7 +5,7 @@ TheraMind is an advanced, medically-aligned conversational AI agent designed to 
 
 Moving beyond simple API wrapping, TheraMind is a full-stack, containerized deployment featuring a custom FastAPI backend, mathematical decoding guardrails, and a sleek, dual-persona web interface.
 
-## 🌐 Try the Live Web App on Hugging Face Spaces!: https://vkm47-theramind-ai.hf.space  (Note: The free-tier GPU sleeps after 15 minutes of inactivity; please allow ~60 seconds for the model to wake up and load into VRAM on the first request.)
+## 🌐 Try the Live Web App on Hugging Face Spaces!: https://vkm47-theramind-ai.hf.space  (Note: The GPU sleeps after 15 minutes of inactivity; please allow ~60 seconds for the model to wake up and load into VRAM on the first request.)
 
 ## ✨ Core Features: The Dual-Mode Architecture
 This model was explicitly fine-tuned using Multi-Task chaining to handle two distinct clinical workflows within a single continuous context window, accessible via a custom-built UI:
